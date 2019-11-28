@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React Intro</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+       // (function(){
+            window.addEventListener('load', init);
+            function init(){
+                var btnRender = document.getElementById('btnRender');
+                btnRender.addEventListener('click', onBtnRenderClick);
+            }
+            var counter = 0;
+            function onBtnRenderClick(){
+                ++counter;
+                var appEle = (
+                    <div>
+                        <h1>Welcome to React.js</h1>
+                        <div>
+                            <span>Counter :</span>
+                            <span>{counter}</span>
+                        </div>
+                        <hr/>
+                        <section>
+                            <h3>Introduction</h3>
+                            <p>Et duis aute cillum dolor proident eu est sit proident culpa consequat qui elit nostrud. Occaecat quis voluptate amet ex ex est irure id veniam eu tempor. Aliquip exercitation exercitation qui dolor elit cillum laboris cupidatat. Ad esse incididunt elit ipsum duis sunt et mollit adipisicing dolore cillum. Excepteur proident ut ipsum eu labore qui sint proident pariatur.</p>
+                            <p>Labore sint consectetur cupidatat qui tempor ipsum ex ut ea in elit ut eiusmod. Consequat enim ad magna nostrud. Tempor eu sint duis elit mollit ipsum ad irure id aute magna ex minim. Nisi sint ex tempor enim veniam nulla.</p>
+                        </section>
+                        <section>
+                            <h3>Advantages</h3>
+                            <ol>
+                                <li>Efficient</li>
+                                <li>Declarative</li>
+                            </ol>
+                        </section>
+                    </div>
+                );
+                ReactDOM.render(appEle, document.getElementById('root'))
+            }
+        //})();
+    </script>
+</head>
+<body>
+    <input type="button" value="Render" id="btnRender">
+    <div id="root"></div>
+</body>
+</html>
