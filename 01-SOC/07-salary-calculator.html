@@ -38,15 +38,15 @@
             };
 
             var _callbacks = {
-                basic : null,
-                hra : null,
-                da : null,
-                tax : null,
-                salary : null
+                basic : [],
+                hra : [],
+                da : [],
+                tax : [],
+                salary : []
             };
 
             this.subscribe = function(attrName, callback){
-                _callbacks[attrName] = callback;
+                _callbacks[attrName].push(callback);
             }
 
             this.get = function(attrName){
@@ -56,9 +56,11 @@
             this.set = function(attrName, value){
                 if (_data[attrName] === value) return;
                 _data[attrName] = value;
-                var callback = _callbacks[attrName];
-                if (typeof callback === 'function')
-                    callback();
+                var callbacks = _callbacks[attrName];
+                callbacks.forEach(callback => {
+                    if (typeof callback === 'function')
+                        callback();
+                });
             }
         }
         //behavior
