@@ -85,18 +85,9 @@
                 return(
                     <section>
                         <SalaryCalculatorInput labelText="Basic :" onValueChange={ (val) => model.set('basic', val)} />
-                        <div className="field">
-                            <label htmlFor="">HRA :</label>
-                            <input type="number" onChange={ evt => model.set('hra', evt.target.value.toInt())} />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="">DA :</label>
-                            <input type="number" onChange={ evt => model.set('da', evt.target.value.toInt())} />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="">Tax :</label>
-                            <input type="range" min="0" max="30" defaultValue="0" onChange={ evt => model.set('tax', evt.target.value.toInt())} />
-                        </div>
+                        <SalaryCalculatorInput labelText="HRA :" onValueChange={ (val) => model.set('hra', val)} />
+                        <SalaryCalculatorInput labelText="DA :" onValueChange={ (val) => model.set('da', val)} />
+                        <SalaryCalculatorInput labelText="Tax :" type="range" onValueChange={ (val) => model.set('tax', val)} min="0" max="30" defaultValue="0" />
                         <div className="field">
                             <input type="button" value="Calculate" onClick={ () => model.calculate() } />
                         </div>
@@ -108,11 +99,11 @@
 
         class SalaryCalculatorInput extends React.Component{
             render(){
-                let { labelText, onValueChange } = this.props;
+                let { labelText, onValueChange, type = 'number', ...attrs } = this.props;
                 return(
                     <div className="field">
                         <label htmlFor="">{labelText}</label>
-                        <input type="number" onChange={ evt => onValueChange(evt.target.value.toInt())}  />
+                        <input type={type} onChange={ evt => onValueChange(evt.target.value.toInt())} {...attrs} />
                     </div>
                 )
             }
