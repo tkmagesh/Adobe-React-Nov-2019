@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 
 /* export function load(){
     return function(dispatch){
@@ -11,11 +11,11 @@ import axios from 'axios';
     }
 } */
 
+import { getAll } from '../services/bugApi';
 export function load(){
-    return axios.get('http://localhost:3030/bugs')
-        .then(response => response.data)
+    return getAll()
         .then(bugs => {
             const action = { type: 'LOAD_BUGS', payload: bugs };
             return action;
-        })
+        });
 }

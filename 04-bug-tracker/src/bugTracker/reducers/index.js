@@ -15,6 +15,10 @@ function bugsReducer(currentState = [], action){
     if (action.type === 'LOAD_BUGS'){
         return action.payload;
     }
+    if (action.type === 'REMOVE_ONE_BUG'){
+        return currentState.filter(bug => bug.id !== action.payload.id);
+    }
+
     return currentState;
 }
 

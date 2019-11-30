@@ -17,7 +17,7 @@ const logMiddleware = function({getState, dispatch}){
 
 const asyncMiddleware = ({getState, dispatch}) => (next) => (action) => {
     if (typeof action === 'function'){
-        action(dispatch);
+        action(dispatch, getState);
     } else {
         next(action);
     }
