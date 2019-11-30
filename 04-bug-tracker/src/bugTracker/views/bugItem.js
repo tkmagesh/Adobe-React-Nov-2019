@@ -16,6 +16,7 @@ class BugItem extends Component {
                 );
         return (
             <li >
+                <div>Index - {bug.id}</div>
                 {bugNameEle}
                 <div className="datetime">[{bug.createdAt.toString()}]</div>
                 <div>{bug.isClosed.toString()}</div>

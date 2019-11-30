@@ -27,6 +27,7 @@ class BugTracker extends Component{
 
 //extracting state for the component
 function mapStateToProps(storeState){
+    //let bugsState = storeState.bugsState.filter(bug => bug.id % 2 === storeState.spinnerState % 2);
     let bugsState = storeState.bugsState;
     return { bugs : bugsState };
 }
