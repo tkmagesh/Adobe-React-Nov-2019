@@ -29,7 +29,7 @@ class BugTracker extends Component{
         newBugName : ''
     };
     render(){
-        const { bugs, addNew, toggle } = this.props,
+        const { bugs, addNew, toggle, removeClosed } = this.props,
             { newBugName } = this.state,
             bugItems = bugs.map((bug, index) => (
                 <BugItem bug={bug} key={index} toggle={toggle}/>
@@ -61,7 +61,7 @@ class BugTracker extends Component{
                     <ol>
                         {bugItems}
                     </ol>
-                    <input type="button" value="Remove Closed" />
+                    <input type="button" value="Remove Closed" onClick={ () => removeClosed(bugs) } />
                 </section>
             </div>
         )
