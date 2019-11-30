@@ -2,17 +2,28 @@ import React, { Component } from 'react';
 import './index.css';
 
 class BugTracker extends Component{
+    state = {
+        newBugName : ''
+    };
     render(){
+        const { bugs, addNew } = this.props,
+            { newBugName } = this.state,
+            bugItems = bugs.map((bug, index) => (
+                <li key={index}>
+                    <span className="bugname">{bug.name}</span>
+                    <div className="datetime">[{bug.createdAt.toString()}]</div>
+                </li>
+            ));
         return(
             <div>
                 <h1>Bug Tracker</h1>
                 <hr />
-                <section class="stats">
-                    <span class="closed">1</span>
+                <section className="stats">
+                    <span className="closed">1</span>
                     <span> / </span>
                     <span>2</span>
                 </section>
-                <section class="sort">
+                <section className="sort">
                     <label htmlFor="">Order By :</label>
                     <select name="" id="">
                         <option value=""></option>
@@ -21,21 +32,14 @@ class BugTracker extends Component{
                     <label htmlFor="">Descending ? :</label>
                     <input type="checkbox" name="" id="" />
                 </section>
-                <section class="edit">
+                <section className="edit">
                     <label htmlFor="">Bug Name : </label>
-                    <input type="text" name="" id="" />
-                    <input type="button" value="Add New" />
+                    <input type="text" onChange={ evt => this.setState({newBugName : evt.target.value})} />
+                    <input type="button" value="Add New" onClick={ () => addNew(newBugName) }/>
                 </section>
-                <section class="list">
+                <section className="list">
                     <ol>
-                        <li>
-                            <span class="bugname">[This is bug - 1]</span>
-                            <div class="datetime">[Created At]</div>
-                        </li>
-                        <li>
-                            <span class="bugname closed">[This is bug - 2]</span>
-                            <div class="datetime">[Created At]</div>
-                        </li>
+                        {bugItems}
                     </ol>
                     <input type="button" value="Remove Closed" />
                 </section>
