@@ -2,22 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-
-import { bindActionCreators } from 'redux';
+import { Provider } from 'react-redux';
 
 import BugTracker from './bugTracker';
-import * as bugActionCreators from './bugTracker/actions';
+import Spinner from './spinner';
+
 import appStore from './store';
 
-const bugActionDispatchers = bindActionCreators(bugActionCreators, appStore.dispatch);
+ReactDOM.render(
+    <Provider store={appStore}>
+        <div>
+            <Spinner/>
+            <BugTracker/>
+        </div>
+    </Provider>
+    , document.getElementById('root'));
 
-function renderApp(){
-    const bugs = appStore.getState();
-    ReactDOM.render(<BugTracker bugs={bugs} {...bugActionDispatchers}/>
-        , document.getElementById('root'));
-}
-renderApp();
-appStore.subscribe(renderApp);
+
 
 
 // If you want your app to work offline and load faster, you can change
