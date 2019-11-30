@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
 import './index.css';
 
+class BugItem extends Component{
+    onBugNameClick = () => {
+        this.props.toggle(this.props.bug);
+    }
+    render(){
+        const { bug } = this.props,
+            bugNameEle = bug.isClosed ? 
+                ( <span className="bugname closed" onClick={this.onBugNameClick}>
+                    {bug.name}
+                </span>
+                ) : ( <span className="bugname" onClick={this.onBugNameClick}>
+                    {bug.name}
+                </span>
+                );
+        return(
+            <li >
+               {bugNameEle}
+                <div className="datetime">[{bug.createdAt.toString()}]</div>
+                <div>{bug.isClosed.toString()}</div>
+            </li>
+        )
+    }
+}
 class BugTracker extends Component{
     state = {
         newBugName : ''
     };
     render(){
-        const { bugs, addNew } = this.props,
+        const { bugs, addNew, toggle } = this.props,
             { newBugName } = this.state,
             bugItems = bugs.map((bug, index) => (
-                <li key={index}>
-                    <span className="bugname">{bug.name}</span>
-                    <div className="datetime">[{bug.createdAt.toString()}]</div>
-                </li>
+                <BugItem bug={bug} key={index} toggle={toggle}/>
             ));
         return(
             <div>

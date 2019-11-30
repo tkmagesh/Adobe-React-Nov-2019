@@ -3,6 +3,10 @@ function bugsReducer(currentState = [], action){
         let newState = [...currentState, action.payload];
         return newState;
     }
+    if (action.type === 'TOGGLE_BUG'){
+        let newState = currentState.map(bug => bug.id === action.payload.id ? action.payload : bug);
+        return newState;
+    }
     return currentState;
 }
 
